@@ -12,18 +12,18 @@
     <h1>Todo</h1>
 
     <form data-bind="submit: addTodo">
-        <input type="text" data-bind="value: todoSummary" placeholder="todo"/>
-        <input type="submit" value="add"/>
+        <input type="text" data-bind="value: todoSummary, valueUpdate: 'afterkeydown'" placeholder="todo"/>
+        <input type="submit" value="add" data-bind="enable: canAddTodo"/>
     </form>
 
     <div id="todoList">
-        <span class="counter">0 items</span><span class="archive redLink">archive</span>
+        <span class="counter"><!--ko text: todoList().length--><!--/ko--> items</span><span class="archive redLink" data-bind="click:archive">archive</span>
 
         <ul data-bind="foreach: todoList">
-            <li class="todoItem">
-                <input type="checkbox">
+            <li class="todoItem" data-bind="css: {doneItem: done}">
+                <input type="checkbox" data-bind="checked: done"/>
                 <span class="summary" data-bind="text: summary"></span>
-                <span class="delete redLink">delete</span>
+                <span class="delete redLink" data-bind="click: $root.deleteTodo">delete</span>
             </li>
         </ul>
     </div>
