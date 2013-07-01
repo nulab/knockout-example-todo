@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all" href="todo.css">
+    <script type="text/javascript" src="knockout-2.2.1.js"></script>
+</head>
+<body>
+
+<div id="content">
+    <h1>Todo</h1>
+
+    <form data-bind="submit: addTodo">
+        <input type="text" data-bind="value: todoSummary" placeholder="todo"/>
+        <input type="submit" value="add"/>
+    </form>
+
+    <div id="todoList">
+        <span class="counter">0 items</span><span class="archive redLink">archive</span>
+
+        <ul data-bind="foreach: todoList">
+            <li class="todoItem">
+                <input type="checkbox">
+                <span class="summary" data-bind="text: summary"></span>
+                <span class="delete redLink">delete</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="todo.js"></script>
+</body>
+</html>
